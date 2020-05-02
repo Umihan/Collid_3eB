@@ -46,57 +46,37 @@ namespace ConsoleApplication1
                 Random Zufallszahl = new Random();
                 int Richtung = Zufallszahl.Next(1, 4);
 
+                hide();     //entfernt das Objakt an der alen Position
+                feld[posx, posy] = 0;
+
                 switch (Richtung)
                 {
                     case 1: //in Richtung +x
-                        hide();     //entfernt das Objekt an der alten Position
                         posx++;     //setzt das Objekt um eine einheit nach rehts;
-
-                        if ()
-                        {
-                            
-                        }
-                        else
-                        {
-                            show();
-                        }
                         break;
 
                     case 2: //in Richtung +y
-                        hide();     //entfernt das Objakt an der alen Position
                         posy++;     //setzt das Objekt um eine Einheit nach oben
-
-                        if ()
-                        { 
-                            
-                        }
-                        else
-                        {
-                            show();
-                        }
                         break;
 
                     case 3: //in Richtung -x
-                        hide();
-                        posx--;
-                        show();
+                        posx--;     //Objekt nach links
                         break;
 
                     case 4: //in Richtung y-
-                        hide();
-                        posy--;
-
-                        if ()
-                        { 
-                            
-                        }
-                        else
-                        {
-                            show();
-                        }
+                        posy--;     //Objekt nach unten
                         break;
                 }
 
+                if (feld[posx, posy] == 0) //schaut ob auf der neuen Position bereits ein Objekt ist
+                {
+                    show();
+                    feld[posx, posy] = 1;
+                }
+                else
+                {
+                    collide();
+                }
             }
 
             static void Main(string[] args)
