@@ -51,13 +51,29 @@ namespace ConsoleApplication1
                     case 1: //in Richtung +x
                         hide();     //entfernt das Objekt an der alten Position
                         posx++;     //setzt das Objekt um eine einheit nach rehts;
-                        show();
+
+                        if ()
+                        {
+                            
+                        }
+                        else
+                        {
+                            show();
+                        }
                         break;
 
                     case 2: //in Richtung +y
                         hide();     //entfernt das Objakt an der alen Position
                         posy++;     //setzt das Objekt um eine Einheit nach oben
-                        show();
+
+                        if ()
+                        { 
+                            
+                        }
+                        else
+                        {
+                            show();
+                        }
                         break;
 
                     case 3: //in Richtung -x
@@ -69,7 +85,15 @@ namespace ConsoleApplication1
                     case 4: //in Richtung y-
                         hide();
                         posy--;
-                        show();
+
+                        if ()
+                        { 
+                            
+                        }
+                        else
+                        {
+                            show();
+                        }
                         break;
                 }
 
