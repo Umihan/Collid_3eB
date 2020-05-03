@@ -14,21 +14,36 @@ using System.IO;
 
 namespace ConsoleApplication1
 {
-    class Program
+     class Program
     {
         const int seite = 50;
         static int[,] feld = new int[seite, seite];
+        
 
         class einer
-        {
+        {   
+            
             // Private Eigenschaften
 
             // Öffentliche Eigenschaften
             public int posx, posy;
             public ConsoleColor farbe;
+            
             // Konstruktor
             public einer()
             {
+                Random RG = new Random(System.DateTime.UtcNow.Millisecond);
+                //wählt eine zufällige Farebe aus
+                farbe = (ConsoleColor)RG.Next(0, 15);
+                //Wählt eine zufällige, freie Possition aus
+                // Achtung, wenn mehr als 2500 Einer erzeugt werden entsteht eine Endlosschleife
+                do
+                {
+                    posx = RG.Next(0, seite);
+                    posy = RG.Next(0, seite);
+                } while (feld[posx, posy] == 1);
+                feld[posx, posy] = 1;
+
             }
             //Private Methoden
             void show()
