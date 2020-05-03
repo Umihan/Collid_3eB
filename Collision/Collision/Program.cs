@@ -27,11 +27,12 @@ namespace ConsoleApplication1
             // Öffentliche Eigenschaften
             public int posx, posy;
             public ConsoleColor farbe;
-            Random RG = new Random();
+            
             
             // Konstruktor
             public einer()
-            {              
+            {
+                Random RG = new Random(System.DateTime.UtcNow.Millisecond);
                 //wählt eine zufällige Farebe aus
                 farbe = (ConsoleColor)RG.Next(0, 15);
                 //Wählt eine zufällige, freie Possition aus
