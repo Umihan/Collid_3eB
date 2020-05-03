@@ -34,7 +34,7 @@ namespace ConsoleApplication1
             {
                 Random RG = new Random(System.DateTime.UtcNow.Millisecond);
                 //wählt eine zufällige Farebe aus
-                farbe = (ConsoleColor)RG.Next(0, 15);
+                farbe = (ConsoleColor)RG.Next(0, 16);
                 //Wählt eine zufällige, freie Possition aus
                 // Achtung, wenn mehr als 2500 Einer erzeugt werden entsteht eine Endlosschleife
                 do
