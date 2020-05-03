@@ -14,10 +14,11 @@ using System.IO;
 
 namespace ConsoleApplication1
 {
-    class Program
+     class Program
     {
-        const int seite = 10;
+        const int seite = 50;
         static int[,] feld = new int[seite, seite];
+        
 
         class einer
         {   
@@ -27,7 +28,6 @@ namespace ConsoleApplication1
             // Öffentliche Eigenschaften
             public int posx, posy;
             public ConsoleColor farbe;
-            
             
             // Konstruktor
             public einer()
@@ -69,8 +69,8 @@ namespace ConsoleApplication1
             Console.Clear();
             Random ZG = new Random();
             int Anzahl=ZG.Next(1,6);
-            einer[] meineEiner = new einer[100];
-            for (int i = 0; i < 100; i++)
+            einer[] meineEiner = new einer[Anzahl];
+            for (int i = 0; i < Anzahl; i++)
             {
                 meineEiner[i] = new einer();
             }
