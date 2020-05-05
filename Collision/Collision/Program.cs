@@ -16,9 +16,9 @@ namespace ConsoleApplication1
 {
      class Program
     {
-        const int seite = 50;
+        const int seite = 25;
         static int[,] feld = new int[seite, seite];
-        
+        static Random RG_Konstruktor = new Random();
 
         class einer
         {   
@@ -32,15 +32,15 @@ namespace ConsoleApplication1
             // Konstruktor
             public einer()
             {
-                Random RG = new Random(System.DateTime.UtcNow.Millisecond);
+                
                 //wählt eine zufällige Farebe aus
-                farbe = (ConsoleColor)RG.Next(0, 15);
+                farbe = (ConsoleColor)RG_Konstruktor.Next(0, 16);
                 //Wählt eine zufällige, freie Possition aus
                 // Achtung, wenn mehr als 2500 Einer erzeugt werden entsteht eine Endlosschleife
                 do
                 {
-                    posx = RG.Next(0, seite);
-                    posy = RG.Next(0, seite);
+                    posx = RG_Konstruktor.Next(0, seite);
+                    posy = RG_Konstruktor.Next(0, seite);
                 } while (feld[posx, posy] == 1);
                 feld[posx, posy] = 1;
 
