@@ -46,7 +46,7 @@ namespace ConsoleApplication1
                 Random Zufallszahl = new Random();
                 int Richtung = Zufallszahl.Next(1, 4);
 
-                hide();     //entfernt das Objakt an der alen Position
+                hide();     //entfernt das Objakt an der alten Position
                 feld[posx, posy] = 0;
 
                 switch (Richtung)
