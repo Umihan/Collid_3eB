@@ -6,8 +6,8 @@ using System.IO;
 /*
  *  Collide
  *  Eine Simulation im 2-dimensionalen Raum
- * Thomas
- * Weithaler
+ * Maximilian
+ * Schuster
  * 4 BEL
  * 2020 TFO-Meran
  */
@@ -58,55 +58,74 @@ namespace ConsoleApplication1
             //Öffentliche Methoden
             public void Move()
             {
-                Random Zufallszahl = new Random();
-                int Richtung = Zufallszahl.Next(1, 4);
+                Random rnd = new Random();
 
-                hide();     //entfernt das Objakt an der alen Position
+                int richtung = rnd.Next(1, 4);
+
+                hide();
+
                 feld[posx, posy] = 0;
 
-                switch (Richtung)
+
+
+                switch (richtung)
                 {
-                    case 1: //in Richtung +x
-                        posx++;     //setzt das Objekt um eine einheit nach rehts;
+                    case 1:
+
+                        posx++;
                         break;
 
-                    case 2: //in Richtung +y
-                        posy++;     //setzt das Objekt um eine Einheit nach oben
+                    case 2:
+
+                        posy++;
                         break;
 
-                    case 3: //in Richtung -x
-                        posx--;     //Objekt nach links
+                    case 3:
+
+                        posx--;
                         break;
 
-                    case 4: //in Richtung y-
-                        posy--;     //Objekt nach unten
+                    case 4:
+
+                        posy--;
                         break;
                 }
+                    
 
-                //Dieser Teil ueberprueft ob sich das Objekt ueber den Rand hinaus bewegt hat,
-                //und setzt ggf. auf den Anfang der gegenueberliegenden Seite.
-                if (posx == -1)
-                    posx = 49;
 
-                if (posx == 50)
-                    posx = 0;
+                    if (posx == -1)
+                    {
+                        posx = 49;
+                    }
 
-                if (posy == -1)
-                    posy = 49;
+                    if (posx == 50)
+                    {
+                        posx = 0;
+                    }
 
-                if (posy == 50)
-                    posy = 0;
+                    if (posy == -1)
+                    {
+                        posy = 49;
+                    }
 
-                if (feld[posx, posy] == 0) //schaut ob auf der neuen Position bereits ein Objekt ist
-                {
-                    show();
-                    feld[posx, posy] = 1;
+                    if (posy == 50)
+                    {
+                        posy = 0;
+                    }
+
+
+
+                    if (feld[posx, posy] == 0)
+                    {
+                        show();
+                        feld[posx, posy] = 1;
+                    }
+
+                    else
+                    {
+                        collide();
+                    }
                 }
-                else
-                {
-                    collide();
-                }
-            }
 
             static void Main(string[] args)
             {
