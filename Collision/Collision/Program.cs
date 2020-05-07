@@ -44,16 +44,44 @@ namespace ConsoleApplication1
                 } while (feld[posx, posy] == 1);
                 feld[posx, posy] = 1;
 
+
+                show();
             }
             //Private Methoden
             void show()
             {
+              // Hier werden Die Objecte auf der Console ausgeschrieben mit ihrer zugewiesenen position.
+           
+          
+                Console.SetCursorPosition(posx, posy);  // Der Cursor wird auf die position gesetzt, auf welcher das Zeichen ausgeschrieben wird.
+                Console.ForegroundColor = farbe;       // Die Zeichenfarbe wird durch die variable "farbe" auf eine zufällige Farbe gesetzt.
+                Console.Write("o");                   // Das hier eingefügte Zeichen wird an der posx,posy ausgeschrieben.
+                Console.ResetColor();                // Die ausgewählte Farbe wird zurückgesetzt.
+ 
+                
             }
-            void hide()
+            void hide() // delete
             {
+
+               // Objecte, welche nicht mehr gebraucht werden werden entfernt.
+
+                feld[posx, posy] = 0;                      // Das Feld an posx,posy wird hier wieder freigegeben.
+                Console.SetCursorPosition(posx, posy);    // Der Cursor wird auf die gewünste Position gesetzt.
+                Console.Write(" ");                      // Ein Leerzeichen wird ausgeschrieben um das vorherige zeichen zu überschreiben.
+         
+              
             }
             void collide()
             {
+
+                // Collisionen von zwei Objecten werden hier Markiert und die Stelle wird wieder freigegeben.
+
+                feld[posx, posy] = 0;                           // Die stelle der Collision wird wieder freigegeben
+                Console.SetCursorPosition(posx, posy);         // Der Cursor wird auf die gewünste Position gesetzt. 
+                Console.ForegroundColor = ConsoleColor.Red;   // Die Farbe wird auf rot gesetzt um die Collision zu markieren.
+                Console.Write("X");                          // Das "X" markiert die Collision.
+                Console.ResetColor();                       // Die Farbe wird zurückgesetzt.
+
             }
             //Öffentliche Methoden
             public void Move()
