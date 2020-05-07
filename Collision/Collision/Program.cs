@@ -22,7 +22,7 @@ namespace ConsoleApplication1
         class einer
         {
             // Private Eigenschaften
-
+            Random RG_Move = new Random();
             // Öffentliche Eigenschaften
             public int posx, posy;
             public ConsoleColor farbe;
@@ -43,8 +43,7 @@ namespace ConsoleApplication1
             //Öffentliche Methoden
             public void Move()
             {
-                Random Zufallszahl = new Random();
-                int Richtung = Zufallszahl.Next(1, 4);
+                int Richtung = RG_Move.Next(1, 4);
 
                 hide();     //entfernt das Objekt an der alten Position
                 feld[posx, posy] = 0;
