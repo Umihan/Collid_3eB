@@ -132,5 +132,39 @@ namespace ConsoleApplication1
                 }
             }
         }
+         // d) Matthias Schrötter
+        // Lest die config.ini datei aus und gibt true (Anzahl > 0) oder false (Anzahl > 0) aus.
+        static bool LoadConfig(ref int Anzahl)
+        {
+            StreamReader sr = new StreamReader(@"config.ini");
+            while (sr.Peek() != -1)
+            {
+                Anzahl = Convert.ToInt32(sr.ReadLine());
+            }
+
+            sr.Close();
+
+            if (Anzahl > 0)
+
+                return true;
+            else
+                return false;
+        }
+
+        // Erstellt die Datei Config.ini und schaut ob die Datei Config.ini erstell wurde oder nicht. Gibt die parameter true oder false zurück.
+        static bool SaveConfig(int Anzahl)
+        {
+            StreamWriter sw = new StreamWriter(@"config.ini");
+            sw.WriteLine(Anzahl);
+            sw.Flush();
+            sw.Close();
+
+            bool fileExist = File.Exists(@"config.ini");
+            if (fileExist)
+
+                return true;
+            else
+                return false;
+        }
     }
 }
