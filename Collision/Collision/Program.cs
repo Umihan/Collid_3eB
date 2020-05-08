@@ -16,9 +16,9 @@ namespace ConsoleApplication1
 {
      class Program
     {
-        const int seite = 50;
+        const int seite = 25;
         static int[,] feld = new int[seite, seite];
-        
+        static Random RG_Konstruktor = new Random();
 
         class einer
         {   
@@ -32,15 +32,15 @@ namespace ConsoleApplication1
             // Konstruktor
             public einer()
             {
-                Random RG = new Random(System.DateTime.UtcNow.Millisecond);
+                
                 //wählt eine zufällige Farebe aus
-                farbe = (ConsoleColor)RG.Next(0, 15);
+                farbe = (ConsoleColor)RG_Konstruktor.Next(0, 16);
                 //Wählt eine zufällige, freie Possition aus
                 // Achtung, wenn mehr als 2500 Einer erzeugt werden entsteht eine Endlosschleife
                 do
                 {
-                    posx = RG.Next(0, seite);
-                    posy = RG.Next(0, seite);
+                    posx = RG_Konstruktor.Next(0, seite);
+                    posy = RG_Konstruktor.Next(0, seite);
                 } while (feld[posx, posy] == 1);
                 feld[posx, posy] = 1;
 
@@ -63,13 +63,12 @@ namespace ConsoleApplication1
             void hide() // delete
             {
 
-               // Objecte, welche nicht mehr gebraucht werden werden entfernt.
+                // Objecte, welche nicht mehr gebraucht werden werden entfernt.
 
                 feld[posx, posy] = 0;                      // Das Feld an posx,posy wird hier wieder freigegeben.
                 Console.SetCursorPosition(posx, posy);    // Der Cursor wird auf die gewünste Position gesetzt.
                 Console.Write(" ");                      // Ein Leerzeichen wird ausgeschrieben um das vorherige zeichen zu überschreiben.
-         
-              
+
             }
             void collide()
             {
@@ -86,10 +85,10 @@ namespace ConsoleApplication1
             //Öffentliche Methoden
             public void Move()
             {
-                Random Zufallszahl = new Random();
-                int Richtung = Zufallszahl.Next(1, 4);
-
-                hide();     //entfernt das Objakt an der alen Position
+                Random RG_Move = new Random(System.DateTime.UtcNow.Millisecond);
+                int Richtung = RG_Move.Next(0, 5);
+                
+                hide();     //entfernt das Objekt an der alten Position
                 feld[posx, posy] = 0;
 
                 switch (Richtung)
@@ -114,15 +113,15 @@ namespace ConsoleApplication1
                 //Dieser Teil ueberprueft ob sich das Objekt ueber den Rand hinaus bewegt hat,
                 //und setzt ggf. auf den Anfang der gegenueberliegenden Seite.
                 if (posx == -1)
-                    posx = 49;
+                    posx = seite-1;
 
-                if (posx == 50)
+                if (posx == seite)
                     posx = 0;
 
                 if (posy == -1)
-                    posy = 49;
+                    posy = seite-1;
 
-                if (posy == 50)
+                if (posy == seite)
                     posy = 0;
 
                 if (feld[posx, posy] == 0) //schaut ob auf der neuen Position bereits ein Objekt ist
@@ -159,6 +158,40 @@ namespace ConsoleApplication1
 
                 }
             }
+        }
+         // d) Matthias Schrötter
+        // Lest die config.ini datei aus und gibt true (Anzahl > 0) oder false (Anzahl > 0) aus.
+        static bool LoadConfig(ref int Anzahl)
+        {
+            StreamReader sr = new StreamReader(@"config.ini");
+            while (sr.Peek() != -1)
+            {
+                Anzahl = Convert.ToInt32(sr.ReadLine());
+            }
+
+            sr.Close();
+
+            if (Anzahl > 0)
+
+                return true;
+            else
+                return false;
+        }
+
+        // Erstellt die Datei Config.ini und schaut ob die Datei Config.ini erstell wurde oder nicht. Gibt die parameter true oder false zurück.
+        static bool SaveConfig(int Anzahl)
+        {
+            StreamWriter sw = new StreamWriter(@"config.ini");
+            sw.WriteLine(Anzahl);
+            sw.Flush();
+            sw.Close();
+
+            bool fileExist = File.Exists(@"config.ini");
+            if (fileExist)
+
+                return true;
+            else
+                return false;
         }
     }
 }
