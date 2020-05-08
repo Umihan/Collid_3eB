@@ -77,15 +77,15 @@ namespace ConsoleApplication1
                 //Dieser Teil ueberprueft ob sich das Objekt ueber den Rand hinaus bewegt hat,
                 //und setzt ggf. auf den Anfang der gegenueberliegenden Seite.
                 if (posx == -1)
-                    posx = 49;
+                    posx = seite-1;
 
-                if (posx == 50)
+                if (posx == seite)
                     posx = 0;
 
                 if (posy == -1)
-                    posy = 49;
+                    posy = seite-1;
 
-                if (posy == 50)
+                if (posy == seite)
                     posy = 0;
 
                 if (feld[posx, posy] == 0) //schaut ob auf der neuen Position bereits ein Objekt ist
